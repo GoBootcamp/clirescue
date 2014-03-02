@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Login	user/user.go	/^func (u *User) Login(name, pass string) {$/;"	f
+Me	trackerapi/me.go	/^func Me() {$/;"	f
+MeResponse	trackerapi/me.go	/^type MeResponse struct {$/;"	t
+New	user/user.go	/^func New() *User {$/;"	f
+ReadLine	cmdutil/cmdutil.go	/^func ReadLine() string {$/;"	f
+Silence	cmdutil/cmdutil.go	/^func Silence() {$/;"	f
+Unsilence	cmdutil/cmdutil.go	/^func Unsilence() {$/;"	f
+User	user/user.go	/^type User struct {$/;"	t
+buffer	cmdutil/cmdutil.go	/^func buffer() *bufio.Reader {$/;"	f
+homeDir	trackerapi/me.go	/^func homeDir() string {$/;"	f
+main	main.go	/^func main() {$/;"	f
+makeRequest	trackerapi/me.go	/^func makeRequest() []byte {$/;"	f
+meResp	trackerapi/me.go	/^	var meResp = new(MeResponse)$/;"	v
+parse	trackerapi/me.go	/^func parse(body []byte) {$/;"	f
+password	trackerapi/me.go	/^	var password = cmdutil.ReadLine()$/;"	v
+runCommand	cmdutil/cmdutil.go	/^func runCommand(command *exec.Cmd) {$/;"	f
+setCredentials	trackerapi/me.go	/^func setCredentials() {$/;"	f
+username	trackerapi/me.go	/^	var username = cmdutil.ReadLine()$/;"	v
