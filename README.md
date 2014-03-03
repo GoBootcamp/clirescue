@@ -7,7 +7,7 @@
 
 ```go
 $ cd $GOPATH/src/github.com/<your username>
-$ git clone git@github.com:<your username>/cli_rescue.git
+$ git clone git@github.com:<your username>/cliRescue.git
 ```
 
 Install the dependencies:
