@@ -9,8 +9,9 @@ import (
 	"os/user"
 )
 
+const URL string = "https://www.pivotaltracker.com/services/v5/me"
+
 var (
-	URL          = "https://www.pivotaltracker.com/services/v5/me"
 	FileLocation = homeDir() + "/.tracker"
 	currentUser  = new(pivotalUser)
 	Stdout       = os.Stdout
