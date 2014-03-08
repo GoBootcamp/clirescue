@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/jrottenberg/clirescue/trackerapi"
+	"./trackerapi"
 	"github.com/codegangsta/cli"
 )
 

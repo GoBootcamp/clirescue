@@ -8,8 +8,8 @@ import (
 	"os"
 	u "os/user"
 
-	"github.com/jrottenberg/clirescue/cmdutil"
-	"github.com/jrottenberg/clirescue/user"
+	"../cmdutil"
+	"../user"
 )
 
 var (
@@ -25,10 +25,21 @@ func Me() {
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
 }
 
+func haveToken() bool {
+	_, err := os.Stat(FileLocation)
+	return err == nil 
+
+}
+
 func makeRequest() []byte {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
-	req.SetBasicAuth(currentUser.Username, currentUser.Password)
+	if haveToken() {
+		token, _ := ioutil.ReadFile(FileLocation)
+		req.Header.Add("X-TrackerToken", string(token))
+	} else {
+		req.SetBasicAuth(currentUser.Username, currentUser.Password)
+	}
 	resp, err := client.Do(req)
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -49,6 +60,9 @@ func parse(body []byte) {
 }
 
 func setCredentials() {
+	if haveToken() {
+		return
+	}
 	fmt.Fprint(Stdout, "Username: ")
 	var username = cmdutil.ReadLine()
 	cmdutil.Silence()
