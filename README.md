@@ -9,7 +9,7 @@
 $ github_user=$(git config github.user)
 $ mkdir -p $GOPATH/src/github.com/$github_user
 $ cd $GOPATH/src/github.com/$github_user
-$ git clone git@github.com:$github_user/cliRescue.git
+$ git clone git@github.com:$github_user/clirescue.git
 ```
 
 Install the dependencies:
