@@ -5,20 +5,20 @@
 1. Start by forking this repo so you have your own copy.
 2. clone the repo in your Go path:
 
-```go
+``` bash
 $ cd $GOPATH/src/github.com/<your username>
 $ git clone git@github.com:<your username>/cliRescue.git
 ```
 
 Install the dependencies:
 
-```go
+``` bash
 $ go get github.com/codegangsta/cli
 ```
 
 If everything is properly setup, you should be able to run your code:
 
-```go
+``` bash
 $ go run main.go
 ```
 
