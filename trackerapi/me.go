@@ -8,8 +8,8 @@ import (
 	"os"
 	u "os/user"
 
-	"../cmdutil"
-	"../user"
+	"github.com/jrottenberg/clirescue/cmdutil"
+	"github.com/jrottenberg/clirescue/user"
 )
 
 var (
@@ -28,7 +28,6 @@ func Me() {
 func haveToken() bool {
 	_, err := os.Stat(FileLocation)
 	return err == nil 
-
 }
 
 func makeRequest() []byte {
