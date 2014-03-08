@@ -47,9 +47,10 @@ and you are now tasked to refactor it.
 The end goal is to create a CLI to interface with the [Pivotal Tracker
 API](https://www.pivotaltracker.com/help/api/rest/v5).
 
-The first step is to return the user details and to store the user token
+The code is returning the user details and to store the user token
 on the drive so next calls can automatically be made without asking for
 the user's username and password.
+Please refactor.
 
 ### A few hints:
 
