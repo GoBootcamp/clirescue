@@ -33,32 +33,45 @@ type MeResponse struct {
 
 func CacheCredentials() error {
 	usr, pwd, err := getCredentials()
-	parse(makeMeRequest(usr, pwd))
+	body, err := makeMeRequest(usr, pwd)
+	if err != nil {
+		return err
+	}
+	parse(body)
+
+	fmt.Println(string(body))
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
 	return err
 }
 
-func makeMeRequest(usr, pwd string) []byte {
+func makeMeRequest(usr, pwd string) ([]byte, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
+	if err != nil {
+		return nil, err
+	}
+
 	req.SetBasicAuth(usr, pwd)
 	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Print(err)
+		return nil, err
 	}
-	fmt.Printf("\n****\nAPI response: \n%s\n", string(body))
-	return body
+	return body, nil
 }
 
-func parse(body []byte) {
-	var meResp = new(MeResponse)
+func parse(body []byte) (string, error) {
+	var meResp MeResponse
 	err := json.Unmarshal(body, &meResp)
 	if err != nil {
-		fmt.Println("error:", err)
+		return "", err
 	}
 
-	currentUser.APIToken = meResp.APIToken
+	return meResp.APIToken, nil
 }
 
 func getCredentials() (usr, pwd string, err error) {
