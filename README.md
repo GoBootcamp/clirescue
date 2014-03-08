@@ -6,16 +6,16 @@
 2. clone the repo in your Go path:
 
 ``` bash
-$ github_user=$(git config github.user)
-$ mkdir -p $GOPATH/src/github.com/$github_user
-$ cd $GOPATH/src/github.com/$github_user
-$ git clone git@github.com:$github_user/clirescue.git
+github_user=$(git config github.user)
+mkdir -p $GOPATH/src/github.com/$github_user
+cd $GOPATH/src/github.com/$github_user
+git clone git@github.com:$github_user/clirescue.git
 ```
 
 Install the dependencies:
 
 ``` bash
-$ go get github.com/codegangsta/cli
+go get github.com/codegangsta/cli
 ```
 
 Load the project into your editor and do a search and replace:
@@ -26,13 +26,13 @@ Load the project into your editor and do a search and replace:
 Commit the change:
 
 ``` bash
-$ git commit -a -m "forking repo requires internal code changes"
+git commit -a -m "forking repo requires internal code changes"
 ```
 
 If everything is properly setup, you should be able to run your code:
 
 ``` bash
-$ go run main.go
+go run main.go
 ```
 
 You can use the following demo Pivotal Tracker account:
