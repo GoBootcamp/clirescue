@@ -18,6 +18,17 @@ Install the dependencies:
 $ go get github.com/codegangsta/cli
 ```
 
+Load the project into your editor and do a search and replace:
+
+* Replace: `github.com/GoBootcamp`
+* With: `github.com/<github-username>`
+
+Commit the change:
+
+``` bash
+$ git commit -a -m "forking repo requires internal code changes"
+```
+
 If everything is properly setup, you should be able to run your code:
 
 ``` bash
