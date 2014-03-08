@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	u "os/user"
+	"os/user"
 
 	"github.com/GoBootcamp/clirescue/cmdutil"
 	"github.com/GoBootcamp/clirescue/user"
