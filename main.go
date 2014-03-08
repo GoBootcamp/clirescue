@@ -13,7 +13,10 @@ func main() {
 	}
 	switch os.Args[1] {
 	case "login":
-		trackerapi.CacheCredentials()
+		err := trackerapi.CacheCredentials()
+		if err != nil {
+			panic(err)
+		}
 	default:
 		log.Fatal("Unknown Command: ", os.Args[1])
 	}

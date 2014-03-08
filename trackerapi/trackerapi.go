@@ -31,16 +31,17 @@ type MeResponse struct {
 	} `json:"time_zone"`
 }
 
-func CacheCredentials() {
-	setCredentials()
-	parse(makeMeRequest())
+func CacheCredentials() error {
+	usr, pwd, err := getCredentials()
+	parse(makeMeRequest(usr, pwd))
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
+	return err
 }
 
-func makeMeRequest() []byte {
+func makeMeRequest(usr, pwd string) []byte {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
-	req.SetBasicAuth(currentUser.Username, currentUser.Password)
+	req.SetBasicAuth(usr, pwd)
 	resp, err := client.Do(req)
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -60,15 +61,21 @@ func parse(body []byte) {
 	currentUser.APIToken = meResp.APIToken
 }
 
-func setCredentials() {
+func getCredentials() (usr, pwd string, err error) {
 	fmt.Fprint(Stdout, "Username: ")
-	var username = readLine()
-	silenceStty()
-	fmt.Fprint(Stdout, "Password: ")
+	usr, err = readLine()
 
-	var password = readLine()
-	currentUser.SetLogin(username, password)
-	unsilenceStty()
+	if err != nil {
+		return
+	}
+
+	silenceStty()
+	defer unsilenceStty()
+
+	fmt.Fprint(Stdout, "Password: ")
+	pwd, err = readLine()
+
+	return usr, pwd, err
 }
 
 func homeDir() string {
