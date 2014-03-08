@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/GoBootcamp/cli_rescue/trackerapi"
+	"github.com/GoBootcamp/cliRescue/trackerapi"
 	"github.com/codegangsta/cli"
 )
 
 func main() {
-app := cli.NewApp()
+	app := cli.NewApp()
 
 	app.Name = "cli_rescue"
 	app.Usage = "CLI tool to talk to the Pivotal Tracker's API"
