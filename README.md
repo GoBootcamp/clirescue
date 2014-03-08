@@ -30,7 +30,7 @@ git commit -a -m "forking repo requires internal code changes"
 If everything is properly setup, you should be able to run your code:
 
 ``` bash
-go run main.go
+go run main.go me
 ```
 
 You can use the following demo Pivotal Tracker account:
@@ -47,10 +47,8 @@ and you are now tasked to refactor it.
 The end goal is to create a CLI to interface with the [Pivotal Tracker
 API](https://www.pivotaltracker.com/help/api/rest/v5).
 
-The code is returning the user details and to store the user token
-on the drive so next calls can automatically be made without asking for
-the user's username and password.
-Please refactor.
+The current code is asking the user for a username and password, the user details are fetched.
+Your first step might be to store the user token on the drive so next time the program is called, it can automatically load the user details be without asking for the user's username and password.
 
 ### A few hints:
 
