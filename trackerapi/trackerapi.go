@@ -13,10 +13,10 @@ import (
 )
 
 var (
-	URL          string     = "https://www.pivotaltracker.com/services/v5/me"
-	FileLocation string     = homeDir() + "/.tracker"
-	currentUser  *user.User = user.New()
-	Stdout       *os.File   = os.Stdout
+	URL          string            = "https://www.pivotaltracker.com/services/v5/me"
+	FileLocation string            = homeDir() + "/.tracker"
+	currentUser  *pivotaluser.User = pivotaluser.New()
+	Stdout       *os.File          = os.Stdout
 )
 
 func Me() {
@@ -55,12 +55,12 @@ func setCredentials() {
 	fmt.Fprint(Stdout, "Password: ")
 
 	var password = cmdutil.ReadLine()
-	currentUser.Login(username, password)
+	currentUser.SetLogin(username, password)
 	cmdutil.Unsilence()
 }
 
 func homeDir() string {
-	usr, _ := u.Current()
+	usr, _ := user.Current()
 	return usr.HomeDir
 }
 
