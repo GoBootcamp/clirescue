@@ -6,8 +6,10 @@
 2. clone the repo in your Go path:
 
 ``` bash
-$ cd $GOPATH/src/github.com/<your username>
-$ git clone git@github.com:<your username>/cliRescue.git
+$ github_user=$(git config github.user)
+$ mkdir -p $GOPATH/src/github.com/$github_user
+$ cd $GOPATH/src/github.com/$github_user
+$ git clone git@github.com:$github_user/cliRescue.git
 ```
 
 Install the dependencies:
