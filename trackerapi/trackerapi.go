@@ -7,16 +7,13 @@ import (
 	"net/http"
 	"os"
 	"os/user"
-
-	"github.com/GoBootcamp/clirescue/cmdutil"
-	"github.com/GoBootcamp/clirescue/pivotaluser"
 )
 
 var (
-	URL          string            = "https://www.pivotaltracker.com/services/v5/me"
-	FileLocation string            = homeDir() + "/.tracker"
-	currentUser  *pivotaluser.User = pivotaluser.New()
-	Stdout       *os.File          = os.Stdout
+	URL          = "https://www.pivotaltracker.com/services/v5/me"
+	FileLocation = homeDir() + "/.tracker"
+	currentUser  = new(pivotalUser)
+	Stdout       = os.Stdout
 )
 
 // MeResponse .
@@ -35,11 +32,11 @@ type MeResponse struct {
 
 func CacheCredentials() {
 	setCredentials()
-	parse(makeRequest())
+	parse(makeMeRequest())
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
 }
 
-func makeRequest() []byte {
+func makeMeRequest() []byte {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
 	req.SetBasicAuth(currentUser.Username, currentUser.Password)
@@ -64,13 +61,13 @@ func parse(body []byte) {
 
 func setCredentials() {
 	fmt.Fprint(Stdout, "Username: ")
-	var username = cmdutil.ReadLine()
-	cmdutil.Silence()
+	var username = readLine()
+	silenceStty()
 	fmt.Fprint(Stdout, "Password: ")
 
-	var password = cmdutil.ReadLine()
+	var password = readLine()
 	currentUser.SetLogin(username, password)
-	cmdutil.Unsilence()
+	unsilenceStty()
 }
 
 func homeDir() string {
