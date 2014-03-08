@@ -22,11 +22,11 @@ func readLine() string {
 	return strings.TrimSpace(string(line))
 }
 
-func silence() {
+func silenceStty() {
 	runCommand(exec.Command("stty", "-echo"))
 }
 
-func unsilence() {
+func unsilenceStty() {
 	runCommand(exec.Command("stty", "echo"))
 }
 
