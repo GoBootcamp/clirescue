@@ -21,7 +21,7 @@ go get github.com/codegangsta/cli
 
 Load the project into your editor and do a search and replace:
 
-* Replace: `github.com/jrottenberg`
+* Replace: `github.com/GoBootcamp`
 * With: `github.com/<github-username>`
 
 Commit the change:
