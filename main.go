@@ -10,7 +10,7 @@ import (
 func main() {
 	app := cli.NewApp()
 
-	app.Name = "cli_rescue"
+	app.Name = "clirescue"
 	app.Usage = "CLI tool to talk to the Pivotal Tracker's API"
 
 	app.Commands = []cli.Command{
