@@ -19,7 +19,21 @@ var (
 	Stdout       *os.File          = os.Stdout
 )
 
-func Me() {
+// MeResponse .
+type MeResponse struct {
+	APIToken string `json:"api_token"`
+	Username string `json:"username"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Initials string `json:"initials"`
+	Timezone struct {
+		Kind      string `json:"kind"`
+		Offset    string `json:"offset"`
+		OlsonName string `json:"olson_name"`
+	} `json:"time_zone"`
+}
+
+func CacheCredentials() {
 	setCredentials()
 	parse(makeRequest())
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
@@ -62,17 +76,4 @@ func setCredentials() {
 func homeDir() string {
 	usr, _ := user.Current()
 	return usr.HomeDir
-}
-
-type MeResponse struct {
-	APIToken string `json:"api_token"`
-	Username string `json:"username"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Initials string `json:"initials"`
-	Timezone struct {
-		Kind      string `json:"kind"`
-		Offset    string `json:"offset"`
-		OlsonName string `json:"olson_name"`
-	} `json:"time_zone"`
 }

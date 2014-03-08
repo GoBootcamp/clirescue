@@ -7,21 +7,28 @@ import (
 	"github.com/codegangsta/cli"
 )
 
-func main() {
-	app := cli.NewApp()
+var (
+	app *cli.App
+)
+
+func init() {
+
+	app = cli.NewApp()
 
 	app.Name = "clirescue"
 	app.Usage = "CLI tool to talk to the Pivotal Tracker's API"
 
 	app.Commands = []cli.Command{
 		{
-			Name:  "me",
-			Usage: "prints out Tracker's representation of your account",
+			Name:  "login",
+			Usage: "Logs into your pivotal account and caches your credentials.",
 			Action: func(c *cli.Context) {
-				trackerapi.Me()
+				trackerapi.CacheCredentials()
 			},
 		},
 	}
+}
 
+func main() {
 	app.Run(os.Args)
 }
