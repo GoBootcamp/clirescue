@@ -68,4 +68,4 @@ As always, refer to the [Effective Go doc](http://golang.org/doc/effective_go.ht
 
 ### Existing refactors
 
-* @campoy and @evanphx did a public refactor in Santa Monica (March 2014) [see fork](https://github.com/campoy/cliRescue)
+* [@campoy](https://github.com/campoy) and [@evanphx](https://github.com/evanphx) did a public refactor in Santa Monica (March 2014) [see fork](https://github.com/campoy/cliRescue)
