@@ -17,60 +17,43 @@ var (
 	Stdout       = os.Stdout
 )
 
-// MeResponse .
-type MeResponse struct {
-	APIToken string `json:"api_token"`
-	Username string `json:"username"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Initials string `json:"initials"`
-	Timezone struct {
-		Kind      string `json:"kind"`
-		Offset    string `json:"offset"`
-		OlsonName string `json:"olson_name"`
-	} `json:"time_zone"`
-}
-
 func CacheCredentials() error {
 	usr, pwd, err := getCredentials()
-	body, err := makeMeRequest(usr, pwd)
+	apiToken, err := getAPIToken(usr, pwd)
 	if err != nil {
 		return err
 	}
-	parse(body)
 
-	fmt.Println(string(body))
-	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
+	ioutil.WriteFile(FileLocation, []byte(apiToken), 0644)
 	return err
 }
 
-func makeMeRequest(usr, pwd string) ([]byte, error) {
+func getAPIToken(usr, pwd string) (string, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	req.SetBasicAuth(usr, pwd)
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
-	}
-	return body, nil
-}
-
-func parse(body []byte) (string, error) {
-	var meResp MeResponse
-	err := json.Unmarshal(body, &meResp)
-	if err != nil {
 		return "", err
 	}
 
+	var meResp struct {
+		APIToken string `json:"api_token"`
+	}
+
+	err = json.Unmarshal(body, &meResp)
+	if err != nil {
+		return "", err
+	}
 	return meResp.APIToken, nil
 }
 
