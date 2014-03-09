@@ -63,7 +63,7 @@ Your first step might be to store the user token on the drive so next time the p
 * Look into how to write tests.
 * Bonus point for removing 3rd part dependencies.
 
-As always, refer to the [Effective Go doc](http://golang.org/doc/effective_go.html) if you have any questions.
+As always, refer to the [Effective Go doc](http://golang.org/doc/effective_go.html) and [the go bootcamp book](http://www.golangbootcamp.com/book) if you have any questions.
 
 
 ### Existing refactors
