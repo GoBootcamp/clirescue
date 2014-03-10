@@ -1,0 +1,123 @@
+http://www.golangbootcamp.com/book/basic_concepts
+https://github.com/mitchellh/gox
+https://generalassemb.ly/los-angeles
+https://gophercasts.io/
+http://play.golang.org/
+
+Other classes happening in here make it really loud.
+
+last name at the end of the import is the package name!
+externally visible things in a package are always capitalized. Capitalized functions are essentially public. Lower case are private.
+all variables have a zero type when initialized. a bool is false, an integer is 0, etc.
+variable shadowing an interesting concept. can be dangerous, but possibly useful(?). A locally scoped variable will override a higher scoped variable.
+
+Silly, valid Go code.
+
+const ever = true
+
+for ever {
+  
+}
+
+variables can be declared specifically in front of an if statement, and that variable will be in scope only for the if
+
+if x :=  5 + y; x < 10 {
+  return "horray!"
+}
+
+newton approximation. Kinda interesting / hard
+
+package main
+
+import (
+  "fmt"
+  "math"
+)
+
+const delta = 1e-5
+
+func Sqrt(x float64) float64 {
+  z := 1.0
+  for {
+    nz := z - (z*z-x)/(2*z)
+    if d := nz - z; math.Abs(d) < delta {
+      return z
+    }
+    z = nz
+  }
+}
+
+func main() {
+  fmt.Println(Sqrt(9))
+}
+
+
+"Go compiles itself (the standard library) in less than one minute"
+
+Classes have behavior, structs are a package of data and behavior. Behavior can be attached to any type.
+
+
+Some sort-of useful debugging output
+fmt.Printf("%+v", Vertex{1, 2})
+fmt.Printf("%#v", Vertex{1, 2})
+fmt.Printf("%q", Vertex{1, 2})
+v := Vertex{Y: 2, X: 1}
+fmt.Printf("%+v", v)
+
+Go copies the object when you pass it around, so that is why you would want to prefer Pointers
+Functions that want to modify an object passed in (as a side-effect), you need to pass through a pointer
+Can you dangle a pointer by pointing to a variable, and losing scope to that variable? No, Go is garbage collected and that variable will continue to exist.
+
+When you really code in Go, you will almost never use arrays. Really? You would use slices.
+Slices are the powerful way to interact with arrays. Has len(), cap(), and append()
+A for loop over a slice uses 2 parameters, index and value when using range
+
+Table testing - https://code.google.com/p/go-tour/source/browse/wc/wc.go
+
+Jeremy Saenz
+Martini - reuseable web components in Go. Very cool.
+
+Lambdas first class citizen. Neat little debug trick.
+func main() {
+    hypot := func(x, y float64) float64 {
+        return math.Sqrt(x*x + y*y)
+    }
+
+    fmt.Printf("%T", hypot)
+}
+func(float64, float64) float64
+
+
+Functions that return functions. Confusing but interesting.
+fibbinocci closure is interesting
+
+Difference between passing a pointer or a value to a defined function. http://tour.golang.org/#54. Pointers allow you to modify, values do not.
+
+https://github.com/mitchellh/goxc + GOOS="OPERATING SYSTEM" go build a main package
+GOOS="windows" /usr/local/Cellar/go/1.2/libexec/src/make.bash
+for loop on GOOS to cross compile things
+
+Kelsey Hightower - @kelseyhightower
+http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
+https://github.com/kelseyhightower/confd
+
+http://www.reddit.com/r/golang/
+
+Channel of channels.
+Channels are interesting.
+Each request sent to a Go web server is its own goroutine.
+
+Don't use . when doing imports and aliases.
+
+
+
+Lots of Ruby devs in here. Lots of web developers as well.
+
+Systemd and your service just logs to stdout. forget about writing logs, just pipe them somewhere or allow some way to aggregate em.
+
+
+
+
+
+
+
