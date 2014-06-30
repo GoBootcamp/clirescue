@@ -1,10 +1,10 @@
-package user
+// Copyright 2013
 
-func New() *User {
-	return new(User)
-}
+// Package pivotaluser represents a pivotal user
+package trackerapi
 
-type User struct {
+// User represents a Pivotal Labs user.
+type pivotalUser struct {
 	Username string
 	Password string
 	APIToken string
@@ -18,7 +18,8 @@ type User struct {
 	} `json:"time_zone"`
 }
 
-func (u *User) Login(name, pass string) {
+// SetLogin sets the username and password.
+func (u *pivotalUser) SetLogin(name, pass string) {
 	u.Username = name
 	u.Password = pass
 }

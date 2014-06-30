@@ -1,27 +1,23 @@
 package main
 
 import (
+	"log"
 	"os"
 
 	"github.com/GoBootcamp/clirescue/trackerapi"
-	"github.com/codegangsta/cli"
 )
 
 func main() {
-	app := cli.NewApp()
-
-	app.Name = "clirescue"
-	app.Usage = "CLI tool to talk to the Pivotal Tracker's API"
-
-	app.Commands = []cli.Command{
-		{
-			Name:  "me",
-			Usage: "prints out Tracker's representation of your account",
-			Action: func(c *cli.Context) {
-				trackerapi.Me()
-			},
-		},
+	if len(os.Args) < 2 {
+		log.Fatal("Command required")
 	}
-
-	app.Run(os.Args)
+	switch os.Args[1] {
+	case "login":
+		err := trackerapi.CacheCredentials()
+		if err != nil {
+			panic(err)
+		}
+	default:
+		log.Fatal("Unknown Command: ", os.Args[1])
+	}
 }
