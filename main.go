@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/GoBootcamp/clirescue/trackerapi"
 	"github.com/codegangsta/cli"
+	"github.com/sorotp/clirescue/trackerapi"
 )
 
 func main() {
