@@ -8,8 +8,8 @@ import (
 	"os"
 	u "os/user"
 
-	"github.com/GoBootcamp/clirescue/cmdutil"
-	"github.com/GoBootcamp/clirescue/user"
+	"github.com/sourabp/clirescue/cmdutil"
+	"github.com/sourabp/clirescue/user"
 )
 
 var (
@@ -19,13 +19,21 @@ var (
 	Stdout       *os.File   = os.Stdout
 )
 
-func Me() {
+func Me() error {
 	setCredentials()
-	parse(makeRequest())
+	response, err := makeRequest()
+	if err != nil {
+		fmt.Print(err)
+		return err
+	}
+
+	parse(response)
 	ioutil.WriteFile(FileLocation, []byte(currentUser.APIToken), 0644)
+	fmt.Print(currentUser.Name)
+	return err
 }
 
-func makeRequest() []byte {
+func makeRequest() ([]byte, error) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", URL, nil)
 	req.SetBasicAuth(currentUser.Username, currentUser.Password)
@@ -33,9 +41,10 @@ func makeRequest() []byte {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Print(err)
+		return body, err
 	}
 	fmt.Printf("\n****\nAPI response: \n%s\n", string(body))
-	return body
+	return body, nil
 }
 
 func parse(body []byte) {
